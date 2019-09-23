@@ -1,0 +1,17 @@
+{
+  "name": "connect4",
+  "version": "1.0.0",
+  "description": "Connect4-reaction-based game",
+  "main": "ignore.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "aurora",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.6.0",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.1.0",
+    "dotenv-flow": "^3.1.0"
+  }
+}
