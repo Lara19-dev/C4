@@ -42,15 +42,37 @@ client
         if(message.channel.id === dumpChannel) games.nextTurn((message.attachments).array()[0].url, message.content);
     }
 })  // Handles reactions to the game 
-    .on('messageReactionAdd', (reaction, user) => {
+    .on('messageReactionAdd', async(reaction, user) => {
     if(user.bot || reaction.message.author.id !== client.user.id) return
-    if(reaction.emoji.id === reaction_[1]) games.nextMove(1, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[2]) games.nextMove(2, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[3]) games.nextMove(3, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[4]) games.nextMove(4, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[5]) games.nextMove(5, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[6]) games.nextMove(6, user.id, user.displayAvatarURL, reaction.message.id);
-    if(reaction.emoji.id === reaction_[7]) games.nextMove(7, user.id, user.displayAvatarURL, reaction.message.id);
-    reaction.remove(user);
+    switch(reaction.emoji.id){
+        case reaction_[1]:
+        games.nextMove(1, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[2]:
+        games.nextMove(2, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[3]:
+        games.nextMove(3, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[4]:
+        games.nextMove(4, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[5]:
+        games.nextMove(5, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[6]:
+        games.nextMove(6, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;
+        case reaction_[7]:
+        games.nextMove(7, user.id, user.displayAvatarURL, reaction.message.id);  
+        await reaction.remove(user);
+        break;                    
+    }
 })  // Logs in the client
     .login(token);

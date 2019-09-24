@@ -125,7 +125,10 @@ module.exports = class Connect4
         .setImage(`${img_link}`)
         .setFooter(`| Report bugs | Version ${botVersion}`)
         .setColor('#FFFFFF');
-        if(this.over) current_game.setThumbnail(bool ? p2.avatarURL : p1.avatarURL);
+        if(this.over) {
+            current_game.setThumbnail(bool ? p2.avatarURL : p1.avatarURL);
+            this.message_object.clearReactions();
+        }
         await this.message_object.edit(current_game);
     }
 
