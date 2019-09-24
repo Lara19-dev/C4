@@ -5,7 +5,8 @@ module.exports = {
     owner: process.env.OWNER,
     prefix: process.env.PREFIX,
     botVersion: process.env.BOTVERSION,
-    gameRoom: process.env.GAMEROOM,
+    gameServer: '622349094290980884',
+    gameRoom: ['622393663091376172','622801138692915212'],
     column : {
         "1" : [29,6],
         "2" : [79,56],
