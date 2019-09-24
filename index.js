@@ -41,7 +41,7 @@ client
 }) /* Handles reactions to the game 
    Takes the vertical; axis value, channel id, user's avatarUrl, and message object */
     .on('messageReactionAdd', async (reaction, user) => {
-    if(user.bot) return
+    if(user.bot || reaction.message.author.id !== client.user.id) return
     if(reaction.emoji.id === "621304998428672010") Games.nextMove(1, user.id, user.displayAvatarURL, reaction.message.id);
     if(reaction.emoji.id === "621304999938359306") Games.nextMove(2, user.id, user.displayAvatarURL, reaction.message.id);
     if(reaction.emoji.id === "621304999883833347") Games.nextMove(3, user.id, user.displayAvatarURL, reaction.message.id);
