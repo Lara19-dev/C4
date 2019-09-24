@@ -1,6 +1,6 @@
 require('dotenv-flow').config();
 
-module.exports = {  
+module.exports = {
     token: process.env.TOKEN,
     owner: process.env.OWNER,
     prefix: process.env.PREFIX,
@@ -24,4 +24,15 @@ module.exports = {
         "2" : [201,178],
         "1" : [246,223],
     },
+    reaction_ : {
+        "1" : "621304998428672010",
+        "2" : "621304999938359306",
+        "3" : "621304999883833347",
+        "4" : "621304999057817601",
+        "5" : "621304999171063809",
+        "6" : "621304999451951105",
+        "7" : "621304998919274506",
+    },
+    dumpChannel : "617407223395647520",
+    gameInit : "Initializing <a:loading:617628744512700447>"
 };

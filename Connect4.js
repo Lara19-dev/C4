@@ -26,18 +26,18 @@ module.exports = class Connect4
     }
     async fallcoin(input, player, avatar){
         // assigns player 1
-        if(this.turns == 1) this.player1 = player;
+        if(this.turns === 1) this.player1 = player;
         // assigns player 2
-        if(this.turns == 2 && player == this.player1) return
-        if(this.turns == 2) this.player2 = player;
+        if(this.turns === 2 && player == this.player1) return
+        if(this.turns === 2) this.player2 = player;
 
         // rejects if the user who reacted isn't a listed player
-        if(this.turns >= 3 && player != this.player1 && player != this.player2) return
+        if(this.turns >= 3 && player !== this.player1 && player !== this.player2) return
         /* based on the number of turns, it rejects if the reaction is from the previous player
             If the no. of turns is an odd number, it rejects player2's input
             If the no. of turns is an even number, it rejects player1's input */        
-        if(this.turns >= 3 && this.turns % 2 == 1 && player == this.player2) return
-        if(this.turns >= 3 && this.turns % 2 == 0 && player == this.player1) return
+        if(this.turns >= 3 && this.turns % 2 === 1 && player === this.player2) return
+        if(this.turns >= 3 && this.turns % 2 === 0 && player === this.player1) return
         // rejects all input once game is over
         if(this.over) return
         // increment turns if all conditions above aren't met
