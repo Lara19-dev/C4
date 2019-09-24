@@ -1,12 +1,11 @@
 
 const { Client } = require('discord.js');
-const { prefix, token, gameRoom } = require('./config');
+const { prefix, token, gameServer, gameRoom } = require('./config');
 const GameThread = require('./GameThread');
 
 const client = new Client();
-// Create games
+// Create Game MultiHandling Object
 var Games = new GameThread();
-var rooms = [gameRoom,"622801138692915212"];
 
 client
     .once('ready', () => {
@@ -17,6 +16,7 @@ client
     // if(!rooms.includes(message.channel.id)) return
     let msg = message.content.toLowerCase();
     if(msg == `${prefix}connect4` || msg == `${prefix}c4`) {
+        if(message.guild.id === gameServer && !gameRoom.includes(message.channel.id)) return
         message.channel.send("Initializing <a:loading:617628744512700447>").then(async message =>{
         await message.react("621304998428672010");
         await message.react("621304999938359306");
