@@ -16,34 +16,32 @@ module.exports = class Connect4
             "1" : [0,0,0,0,0,0,0,],
         }
         this.canvasInit();
-        this.match = {};
-        this.match.player1;
-        this.match.player2;
         this.message_id = message_id;
         this.message_object = message;
-        this.turns = 1;
         this.over = false;
+        this.turns = 1;
+        this.player1;
+        this.player2;
         this.buf;
     }
     async fallcoin(input, player, avatar){
         // assigns player 1
-        if(this.turns == 1) this.match.player1 = player;
+        if(this.turns == 1) this.player1 = player;
         // assigns player 2
-        if(this.turns == 2 && player == this.match.player1) return
-        if(this.turns == 2) this.match.player2 = player;
+        if(this.turns == 2 && player == this.player1) return
+        if(this.turns == 2) this.player2 = player;
 
         // rejects if the user who reacted isn't a listed player
-        if(this.turns >= 3 && player != this.match.player1 && player != this.match.player2) return
+        if(this.turns >= 3 && player != this.player1 && player != this.player2) return
         /* based on the number of turns, it rejects if the reaction is from the previous player
             If the no. of turns is an odd number, it rejects player2's input
             If the no. of turns is an even number, it rejects player1's input */        
-        if(this.turns >= 3 && this.turns % 2 == 1 && player == this.match.player2) return
-        if(this.turns >= 3 && this.turns % 2 == 0 && player == this.match.player1) return
+        if(this.turns >= 3 && this.turns % 2 == 1 && player == this.player2) return
+        if(this.turns >= 3 && this.turns % 2 == 0 && player == this.player1) return
         // rejects all input once game is over
         if(this.over) return
         // increment turns if all conditions above aren't met
         ++this.turns;
-        console.log(`It is turn ${this.turns}!`);
         
         // Coordinates
         let level = 0;
@@ -73,9 +71,7 @@ module.exports = class Connect4
             level = 6;
         }
         else return --this.turns;
-
         this.update(player);
-        console.log(`${this.board[6]}\n${this.board[5]}\n${this.board[4]}\n${this.board[3]}\n${this.board[2]}\n${this.board[1]}`);
         await this.generate_board(avatar,level,input);  
     }
 
@@ -114,14 +110,14 @@ module.exports = class Connect4
         //  Current Game saved to buffer
         this.buf = canvas.toBuffer();
         let attachment = new Attachment(await this.buf, 'game.png');
-        client.channels.get('617407223395647520').send(this.message_id,attachment);
+        client.channels.get('617407223395647520').send(this.message_id, attachment);
     }
 
     async currentGame(img_link){
         let bool = this.turns % 2 == 1;
         let foor = this.turns >= 3;
-        let p1 = client.users.get(this.match.player1);
-        let p2 = client.users.get(this.match.player2);
+        let p1 = client.users.get(this.player1);
+        let p2 = client.users.get(this.player2);
 
         let current_game = new RichEmbed()
         .setTitle('Connect Four™')

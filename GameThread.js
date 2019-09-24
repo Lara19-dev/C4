@@ -36,6 +36,8 @@ module.exports = class GameThread {
     let game = this.search(message_id);
     if(game === 0) return
     game.currentGame(gameCache);
+    this.games = this.games.filter(game => game.over !== true);
+    console.log(`Games in cache: ${this.games.length}`);
     }
 
     search(message_id){
