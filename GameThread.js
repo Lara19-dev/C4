@@ -1,49 +1,51 @@
-const C4 = require('./Connect4');
 const { RichEmbed } = require('discord.js');
+const C4 = require('./Connect4');
 const { botVersion } = require('./config');
 
 
 module.exports = class GameThread {
-    constructor() {
-        this.games = [];
-        this.channels = [];
-        this.messages = [];
-        this.players_active = [];   
-    }
+  constructor() {
+    this.games = [];
+    this.channels = [];
+    this.messages = [];
+    this.players_active = [];
+  }
 
-    newGame(){
-        let startGame = new RichEmbed()
-        .setTitle('Connect Four™')
-        .setImage('https://cdn.discordapp.com/attachments/596907650042691584/624841411715399711/game.png')
-        .addField('New Player\'s Turn!', "React to position your coin")
-        .setFooter(`| Report bugs | Version ${botVersion}`)
-        .setColor('#FFFFFF');
-        return startGame;
-    }
+  static newGame() {
+    const startGame = new RichEmbed()
+      .setTitle('Connect Four™')
+      .setImage('https://cdn.discordapp.com/attachments/596907650042691584/624841411715399711/game.png')
+      .addField('New Player\'s Turn!', 'React to position your coin')
+      .setFooter(`| Report bugs | Version ${botVersion}`)
+      .setColor('#FFFFFF');
+    return startGame;
+  }
 
-    begun(message, message_id){
-        this.games.push(new C4(message, message_id))
-        console.log(this.games.length);
-    }
+  begun(message, messageId) {
+    this.games.push(new C4(message, messageId));
+    // eslint-disable-next-line no-console
+    console.log(this.games.length);
+  }
 
-    nextMove(vertical_axis, player, avatar, message_id){
-    let game = this.search(message_id);
-    if(game === 0) return
-    game.fallcoin(vertical_axis, player, avatar);
-    }
+  nextMove(verticalAxis, player, avatar, messageId) {
+    const game = this.search(messageId);
+    if (game === 0) return;
+    game.fallcoin(verticalAxis, player, avatar);
+  }
 
-    nextTurn(gameCache, message_id){
-    let game = this.search(message_id);
-    if(game === 0) return
+  nextTurn(gameCache, messageId) {
+    const game = this.search(messageId);
+    if (game === 0) return;
     game.currentGame(gameCache);
-    this.games = this.games.filter(game => game.over !== true);
+    this.games = this.games.filter((_game) => _game.over !== true);
+    // eslint-disable-next-line no-console
     console.log(`Games in cache: ${this.games.length}`);
-    }
+  }
 
-    search(message_id){
-        for(let i = 0; i < this.games.length; i++){
-            if(this.games[i].message_id === message_id) return this.games[i];
-        }
-        return 0;
+  search(messageId) {
+    for (let i = 0; i < this.games.length; i += 1) {
+      if (this.games[i].message_id === messageId) return this.games[i];
     }
-}
+    return 0;
+  }
+};
