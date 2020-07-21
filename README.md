@@ -1,5 +1,5 @@
 # C4
-![](https://cdn.discordapp.com/attachments/605343680047480864/643377529331253248/wallpaper.png)
+![](https://cdn.discordapp.com/attachments/617407223395647520/735155217745707029/game.png)
 
 A very rough implementation of Connect4 for Discord
 
