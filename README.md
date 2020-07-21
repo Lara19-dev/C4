@@ -28,6 +28,11 @@ No need for quotation marks just replace your token in there and you're set
 $ npm start
 ```
 
+And start playing with a friend by invoking the command below!
+```sh
+/c4
+```
+
 ### Todos
 
  - Fix this mess
