@@ -26,7 +26,7 @@ client
   .on('message', async (message) => {
     if (message.author.bot || message.channel.type === 'dm') return;
     if (message.content.toLowerCase() !== `${prefix}c4`) return;
-    if (message.guild.id === gameServer && !gameRoom.includes(message.channel.id)) return;
+    //if (message.guild.id === gameServer && !gameRoom.includes(message.channel.id)) return;
     message.channel.send(gameInit).then(async (msg) => {
       await msg.react(reaction_[1]);
       await msg.react(reaction_[2]);
