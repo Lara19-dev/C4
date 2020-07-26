@@ -14,7 +14,7 @@ module.exports = class GameThread {
   static newGame() {
     const startGame = new RichEmbed()
       .setTitle('Connect Four™')
-      .setImage('https://cdn.discordapp.com/attachments/596907650042691584/624841411715399711/game.png')
+      .setImage('https://cdn.discordapp.com/attachments/605343680047480864/643377529331253248/wallpaper.png')
       .addField('New Player\'s Turn!', 'React to position your coin')
       .setFooter(`| Report bugs | Version ${botVersion}`)
       .setColor('#FFFFFF');
